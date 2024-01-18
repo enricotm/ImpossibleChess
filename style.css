@@ -1,14 +1,26 @@
 @media (orientation: portrait) {
+    body {
+        flex-direction: column;
+    }
     #main {
         width: 90vw;
         height: 90vw;
     }
+    #buttons {
+        margin-top: 20px;
+    }
 }
 
 @media (orientation: landscape) {
+    body {
+        flex-direction: row;
+    }
     #main {
         width: 90vh;
         height: 90vh;
+    }
+    #buttons {
+        margin-left: 20px;
     }
 }
 
@@ -24,6 +36,15 @@ body {
 #main {
     /* border: 1px solid #000; */
     flex-direction: column;
+}
+
+#randomizeBtn {
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 7px;
+    padding: 5px 10px;
+    background-color: #ccc;
 }
 
 .rowDiv {
