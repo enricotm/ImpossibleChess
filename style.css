@@ -7,7 +7,16 @@
         height: 90vw;
     }
     #buttons {
-        margin-top: 20px;
+        margin-top: 40px;
+    }
+    .btn {
+        font-size: 14px;
+    }
+    #keyBtn {
+        margin-left: 10px;
+    }
+    #confirmBtn {
+        margin-left: 30px;
     }
 }
 
@@ -20,7 +29,18 @@
         height: 90vh;
     }
     #buttons {
-        margin-left: 20px;
+        margin-left: 60px;
+        display: flex;
+        flex-direction: column;
+    }
+    .btn {
+        font-size: 16px;
+    }
+    #keyBtn {
+        margin-top: 20px;
+    }
+    #confirmBtn {
+        margin-top: 50px;
     }
 }
 
@@ -38,13 +58,13 @@ body {
     flex-direction: column;
 }
 
-#randomizeBtn {
-    font-size: 16px;
+.btn {
+    color: floralwhite;
     font-weight: 700;
     border: none;
     border-radius: 7px;
-    padding: 5px 10px;
-    background-color: #ccc;
+    padding: 7px 18px;
+    background-color: dimgray;
 }
 
 .rowDiv {
@@ -60,6 +80,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.key {
+    background-color: goldenrod;
 }
 
 .coin {
