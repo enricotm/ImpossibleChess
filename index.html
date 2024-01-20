@@ -8,9 +8,12 @@
 </head>
 <body>
     <div id="main"></div>
-    <div id="buttons">
-        <button id="randomizeBtn" class="btn" onclick="Randomize()">Randomize</button>
-        <button id="keyBtn" class="btn" onclick="SetKey()">Set Key</button>
+    <div id="allButtons">
+        <div id="configButtons">
+            <button id="randomizeBtn" class="btn" onclick="Randomize()">Randomize</button>
+            <button id="playerMode" class="btn" onclick="ChangePlayerMode()">2 Players</button>
+            <button id="keyBtn" class="btn" onclick="SetKey()">Set Key</button>
+        </div>
         <button id="confirmBtn" class="btn">Confirm</button>
     </div>
     <script src="./script.js"></script>

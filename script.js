@@ -18,6 +18,7 @@ for (let row = 0; row < 8; row++) {
 }
 let setKey = false;
 let keyId = 0;
+let playerMode = 2;
 Randomize();
 
 function Randomize() {
@@ -51,7 +52,7 @@ function ChangeColor(coin) {
 function ChangeKey(coinId="") {
     document.getElementById("coin"+keyId).parentElement.classList.remove("key");
     keyId = coinId != "" ? coinId : Math.floor(Math.random()*64);
-    document.getElementById("coin"+keyId).parentElement.classList.add("key");
+    if (playerMode != 1) { document.getElementById("coin"+keyId).parentElement.classList.add("key") }
 }
 
 function SetKey() {
@@ -62,5 +63,21 @@ function SetKey() {
     } else {
         setKeyBtn.classList.add("key");
         setKey = true;
+    }
+}
+
+function ChangePlayerMode() {
+    playerMode = (playerMode % 2) + 1;
+    const playerModeBtn = document.getElementById("playerMode");
+    const keyDiv = document.getElementById("coin"+keyId).parentElement;
+    const setKeyBtn = document.getElementById("keyBtn");
+    if (playerMode == 1) {
+        playerModeBtn.textContent = "1 Player";
+        keyDiv.classList.remove("key");
+        setKeyBtn.hidden = true;
+    } else {
+        playerModeBtn.textContent = playerMode+" Players";
+        keyDiv.classList.add("key");
+        setKeyBtn.hidden = false;
     }
 }
