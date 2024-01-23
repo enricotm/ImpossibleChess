@@ -119,11 +119,11 @@ function ConfirmBtn() {
         confirmed = true;
 
         document.getElementById(keyId).parentElement.classList.remove("key");
-        calcCoinToFlip();
+        CalcCoinToFlip();
     }
 }
 
-function calcCoinToFlip() {
+function CalcCoinToFlip() {
     let flipCoin = 0;
     for (let i = 0; i < 64; i++) {
         const coin = document.getElementById(i);
@@ -132,16 +132,20 @@ function calcCoinToFlip() {
         };
     }
     flipCoin = xor(flipCoin, parseInt(keyId).toString(2));
-    flipCoinAnimation(flipCoin);
+    FlipCoinAnimation(flipCoin);
 }
 
-function flipCoinAnimation(flipCoin) {
+function FlipCoinAnimation(flipCoin) {
     const flipCoinId = parseInt(flipCoin, 2)
     const flipDiv = document.getElementById(flipCoinId).parentElement;
     const initMs = 100; const delayMs = 600;
-    setTimeout((div) => div.classList.add("flip"), initMs, flipDiv);
-    setTimeout(ChangeColor, initMs+delayMs, flipCoinId);
-    setTimeout((div) => div.classList.remove("flip"), initMs+delayMs*2, flipDiv);
+    if (playerMode == 1) {
+        ChangeColor(flipCoinId)
+    } else {
+        setTimeout((div) => div.classList.add("flip"), initMs, flipDiv);
+        setTimeout(ChangeColor, initMs+delayMs, flipCoinId);
+        setTimeout((div) => div.classList.remove("flip"), initMs+delayMs*2, flipDiv);
+    }
 }
 
 function xor(val1, val2) {
