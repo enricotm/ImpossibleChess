@@ -29,6 +29,11 @@
     }
 }
 
+:root {
+    --correct: #16ba19;
+    --wrong: rgb(218, 57, 57);
+}
+
 body {
     margin: 0;
     height: 100vh;
@@ -63,7 +68,11 @@ body {
 
 #confirmBtn {
     margin-top: 30px;
-    background-color: green;
+}
+
+#guessTxt {
+    font-size: 40px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .rowDiv {
@@ -81,24 +90,40 @@ body {
     justify-content: center;
 }
 
-.key {
-    background-color: goldenrod;
-}
-
 .coin {
     width: 95%;
     height: 95%;
     border-radius: 50%;
 }
 
-.red {
-    background-color: #eb4034;
+.key {
+    background-color: goldenrod;
 }
 
-.blue {
+.tails {
+    background-color: #a8059d;
+}
+
+.heads {
     background-color: #3bb3db;
 }
 
 .flip {
     background-color: purple;
+}
+
+.correctDiv {
+    background-color: var(--correct);
+}
+
+.correctTxt {
+    color: var(--correct);
+}
+
+.wrongDiv {
+    background-color: var(--wrong);
+}
+
+.wrongTxt {
+    color: var(--wrong);
 }

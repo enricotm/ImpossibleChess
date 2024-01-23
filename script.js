@@ -19,20 +19,35 @@ for (let row = 0; row < 8; row++) {
 let setKey = false;
 let confirmed = false;
 let keyId = 0;
+let guessId = 0;
 let playerMode = 2;
 Randomize();
 
 function Randomize() {
     for (let i = 0; i < 64; i++) {
         const coin = document.getElementById(i);
-        coin.classList.remove("red", "blue");
-        coin.classList.add(["red", "blue"][Math.floor(Math.random()*2)]);
+        coin.classList.remove("tails", "heads");
+        coin.classList.add(["tails", "heads"][Math.floor(Math.random()*2)]);
     }
     ChangeKey();
 }
 
 function ChangeCoin(coinId) {
     if (confirmed) {
+        guessId = coinId;
+        const guessDiv = document.getElementById(coinId).parentElement;
+        const guessTxt = document.getElementById("guessTxt");
+        guessTxt.hidden = false;
+        if (coinId == keyId) {
+            guessDiv.classList.add("correctDiv");
+            guessTxt.classList.add("correctTxt");
+            guessTxt.textContent = "Correct!";
+        } else {
+            guessDiv.classList.add("wrongDiv");
+            guessTxt.classList.add("wrongTxt");
+            guessTxt.textContent = "Wrong!";
+            document.getElementById(keyId).parentElement.classList.add("key");
+        }
     }
     else if (setKey) {
         ChangeKey(coinId);
@@ -44,18 +59,18 @@ function ChangeCoin(coinId) {
 
 function ChangeColor(coinId) {
     const coin = document.getElementById(coinId)
-    if (coin.classList.value.includes("red")) {
-        coin.classList.remove("red");
-        coin.classList.add("blue");
+    if (coin.classList.value.includes("tails")) {
+        coin.classList.remove("tails");
+        coin.classList.add("heads");
     } else {
-        coin.classList.remove("blue");
-        coin.classList.add("red");
+        coin.classList.remove("heads");
+        coin.classList.add("tails");
     }
 }
 
 function ChangeKey(coinId="") {
     document.getElementById(keyId).parentElement.classList.remove("key");
-    keyId = coinId != "" ? coinId : Math.floor(Math.random()*64);
+    keyId = coinId !== "" ? coinId : Math.floor(Math.random()*64);
     if (playerMode != 1) { document.getElementById(keyId).parentElement.classList.add("key") }
 }
 
@@ -88,15 +103,22 @@ function ChangePlayerMode() {
 
 function ConfirmBtn() {
     if (confirmed) {
-        Randomize();
-        if (setKey) { SetKey() };
         document.getElementById("configButtons").hidden = false;
         document.getElementById("confirmBtn").textContent = "Confirm";
         confirmed = false;
+
+        if (setKey) { SetKey() };
+        document.getElementById(guessId).parentElement.classList.remove("correctDiv", "wrongDiv");
+        const guessTxt = document.getElementById("guessTxt");
+        guessTxt.classList.remove("correctTxt", "wrongTxt");
+        guessTxt.hidden = true;
+        Randomize();
     } else {
         document.getElementById("configButtons").hidden = true;
         document.getElementById("confirmBtn").textContent = "Restart";
         confirmed = true;
+
+        document.getElementById(keyId).parentElement.classList.remove("key");
         calcCoinToFlip();
     }
 }
@@ -105,19 +127,19 @@ function calcCoinToFlip() {
     let flipCoin = 0;
     for (let i = 0; i < 64; i++) {
         const coin = document.getElementById(i);
-        if (coin.classList.value.includes("red")) {
+        if (coin.classList.value.includes("tails")) {
             flipCoin = xor(flipCoin, parseInt(coin.id).toString(2));
         };
     }
     flipCoin = xor(flipCoin, parseInt(keyId).toString(2));
-    flipCoinAnimation(flipCoin)
+    flipCoinAnimation(flipCoin);
 }
 
 function flipCoinAnimation(flipCoin) {
     const flipCoinId = parseInt(flipCoin, 2)
     const flipDiv = document.getElementById(flipCoinId).parentElement;
     ChangeColor(flipCoinId)
-    flipDiv.classList.add("flip");
+    // flipDiv.classList.add("flip");
 }
 
 function xor(val1, val2) {
