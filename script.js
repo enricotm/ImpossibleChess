@@ -138,8 +138,10 @@ function calcCoinToFlip() {
 function flipCoinAnimation(flipCoin) {
     const flipCoinId = parseInt(flipCoin, 2)
     const flipDiv = document.getElementById(flipCoinId).parentElement;
-    ChangeColor(flipCoinId)
-    // flipDiv.classList.add("flip");
+    const initMs = 100; const delayMs = 600;
+    setTimeout((div) => div.classList.add("flip"), initMs, flipDiv);
+    setTimeout(ChangeColor, initMs+delayMs, flipCoinId);
+    setTimeout((div) => div.classList.remove("flip"), initMs+delayMs*2, flipDiv);
 }
 
 function xor(val1, val2) {
