@@ -62,7 +62,7 @@ body {
 }
 
 #confirmBtn {
-    margin-top: 40px;
+    margin-top: 30px;
     background-color: green;
 }
 
@@ -97,4 +97,8 @@ body {
 
 .blue {
     background-color: #3bb3db;
+}
+
+.flip {
+    background-color: purple;
 }
